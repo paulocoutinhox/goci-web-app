@@ -9,3 +9,4 @@ src/app/**/*.shim.ts
 npm-debug.log
 /aot
 .DS_Store
+/bindata
