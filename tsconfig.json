@@ -30,6 +30,6 @@
 		"skipMetadataEmit": true
 	},
 	"files": [
-		"src/app/modules/main.module.ts"
+		"src/app/modules/app.module.ts"
 	]
 }

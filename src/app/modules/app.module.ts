@@ -20,7 +20,7 @@ import { TimestampFormat } from "../components/pipes/timestampFormat";
 import { TaskOptionsComponent } from "../components/task-options/task-options.component";
 import { ProjectTaskItemComponent } from "../components/project-task-item/project-task-item.component";
 import { ChartsModule } from "ng2-charts/ng2-charts";
-import { RoutingModule } from "./routing.module";
+import { AppRoutingModule } from "./app-routing.module";
 
 toastr.options = {timeOut: 5000, progressBar: true, hideDuration: 300, positionClass: 'toast-top-center'};
 
@@ -46,7 +46,7 @@ toastr.options = {timeOut: 5000, progressBar: true, hideDuration: 300, positionC
 		HttpModule,
 		RouterModule,
 		ChartsModule,
-		RoutingModule
+		AppRoutingModule
 	],
 	bootstrap: [
 		AppMainComponent
@@ -59,5 +59,5 @@ toastr.options = {timeOut: 5000, progressBar: true, hideDuration: 300, positionC
 	]
 })
 
-export class MainModule {
+export class AppModule {
 }
