@@ -1,10 +1,10 @@
-import {Injectable} from "@angular/core";
-import {Http, Headers, Response} from "@angular/http";
-import {ProjectTaskOption} from "../models/ProjectTaskOption";
+import { Injectable } from "@angular/core";
+import { Http, Headers, Response } from "@angular/http";
+import { ProjectTaskOption } from "../models/ProjectTaskOption";
 import "rxjs/add/operator/toPromise";
-import {WebResponse} from "../models/WebResponse";
-import {ProjectTask} from "../models/ProjectTask";
-import {Project} from "../models/Project";
+import { WebResponse } from "../models/WebResponse";
+import { ProjectTask } from "../models/ProjectTask";
+import { Project } from "../models/Project";
 
 @Injectable()
 export class TaskService {

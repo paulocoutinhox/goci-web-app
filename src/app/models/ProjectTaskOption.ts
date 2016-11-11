@@ -1,4 +1,4 @@
-import {ProjectTaskOptionValuesItem} from "./ProjectTaskOptionValuesItem";
+import { ProjectTaskOptionValuesItem } from "./ProjectTaskOptionValuesItem";
 
 export class ProjectTaskOption {
 

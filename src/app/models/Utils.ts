@@ -1,4 +1,4 @@
-import {WebResponse} from "./WebResponse";
+import { WebResponse } from "./WebResponse";
 export class Utils {
 
 	static formValuesEncoded(formValues: any): string {

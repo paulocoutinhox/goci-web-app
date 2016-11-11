@@ -1,4 +1,4 @@
-import {ProjectTask} from "./ProjectTask";
+import { ProjectTask } from "./ProjectTask";
 
 export class Project {
 

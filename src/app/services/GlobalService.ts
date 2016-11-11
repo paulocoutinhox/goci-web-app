@@ -1,5 +1,5 @@
-import {Injectable, EventEmitter} from "@angular/core";
-import {Job} from "../models/Job";
+import { Injectable, EventEmitter } from "@angular/core";
+import { Job } from "../models/Job";
 
 @Injectable()
 export class GlobalService {

@@ -1,6 +1,6 @@
 build:
 	rm -rf dist
-	npm run build:prod
+	npm run build
 
 generate-assets:
 	rm -rf bindata

@@ -1,5 +1,5 @@
-import {ProjectTask} from "./ProjectTask";
-import {JobOutputGroup} from "./JobOutputGroup";
+import { ProjectTask } from "./ProjectTask";
+import { JobOutputGroup } from "./JobOutputGroup";
 
 export class Job {
 

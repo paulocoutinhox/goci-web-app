@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import { Injectable } from "@angular/core";
+import { Http, Response } from "@angular/http";
 import "rxjs/add/operator/toPromise";
-import {Job} from "../models/Job";
-import {WebResponse} from "../models/WebResponse";
+import { Job } from "../models/Job";
+import { WebResponse } from "../models/WebResponse";
 
 @Injectable()
 export class JobService {

@@ -1,5 +1,5 @@
-import {ProjectTaskStep} from "./ProjectTaskStep";
-import {ProjectTaskStepOption} from "./ProjectTaskStepOption";
+import { ProjectTaskStep } from "./ProjectTaskStep";
+import { ProjectTaskStepOption } from "./ProjectTaskStepOption";
 
 export class ProjectTask {
 

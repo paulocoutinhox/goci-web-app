@@ -1,4 +1,4 @@
-import {ProjectTaskStepOption} from "./ProjectTaskStepOption";
+import { ProjectTaskStepOption } from "./ProjectTaskStepOption";
 
 export class ProjectTaskStep {
 
