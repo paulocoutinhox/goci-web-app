@@ -8,6 +8,7 @@ import { Project } from "../../models/Project";
 import { Job } from "../../models/Job";
 import { ProjectTask } from "../../models/ProjectTask";
 import { WebResponse } from "../../models/WebResponse";
+import { Utils } from "../../models/Utils";
 
 @Component({
 	selector: 'project-view',
@@ -115,7 +116,7 @@ export class ProjectViewComponent implements OnInit {
 
 		this.taskService.options(this.project.id, task.id)
 			.then((wr: WebResponse) => {
-				if (wr.success != null) {
+				if (wr.success == true) {
 					this.runTaskOptions = wr.data['options'];
 					this.showTaskOptionsForm = true;
 				} else {
@@ -123,7 +124,11 @@ export class ProjectViewComponent implements OnInit {
 				}
 			})
 			.catch(error => {
-				toastr.error(error);
+				if (Utils.isEmpty(error)) {
+					toastr.error('Error when get task options, try again');
+				} else {
+					toastr.error(error);
+				}
 			});
 	}
 

@@ -36,4 +36,12 @@ export class Utils {
 		return null;
 	}
 
+	static isEmpty(data: string): boolean {
+		if (data != null && data != "") {
+			return true;
+		}
+
+		return false;
+	}
+
 }

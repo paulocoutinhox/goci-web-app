@@ -8,6 +8,7 @@
 					(click)="showTaskOptions(project.id, project.name, task.id, task.name, task.description)">Run
 			</button>
 			<button type="button" class="btn btn-primary" (click)="load()">Refresh</button>
+			<button type="button" class="btn btn-danger" (click)="stop(project.id, task.id)">Stop</button>
 			<button type="button" class="btn btn-default" (click)="back()">Back</button>
 		</div>
 	</div>

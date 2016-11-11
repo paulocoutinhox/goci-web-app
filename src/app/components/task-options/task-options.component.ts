@@ -100,7 +100,12 @@ export class TaskOptionsComponent implements OnInit, AfterViewInit {
 				}
 			})
 			.catch(error => {
-				toastr.error(error);
+				if (Utils.isEmpty(error)) {
+					toastr.error('Error when add task to queue, try again');
+				} else {
+					toastr.error(error);
+				}
+
 				this.taskRunWithError.emit();
 			});
 	}

@@ -102,6 +102,24 @@ export class TaskViewComponent implements OnInit {
 		this.router.navigate(['/project/view', this.projectId]);
 	}
 
+	stop(projectId: string, taskId: string) {
+		this.jobService.stop(projectId, taskId)
+			.then((wr: WebResponse) => {
+				if (wr.success == true) {
+					toastr.success('Job stopped for this task');
+				} else {
+					toastr.error('Error when stop job for this task, try again');
+				}
+			})
+			.catch(error => {
+				if (Utils.isEmpty(error)) {
+					toastr.error('Error when stop job for this task, try again');
+				} else {
+					toastr.error(error);
+				}
+			});
+	}
+
 	hideAll() {
 		this.showData = false;
 		this.showEmptyData = false;
@@ -152,7 +170,11 @@ export class TaskViewComponent implements OnInit {
 				}
 			})
 			.catch(error => {
-				toastr.error(error);
+				if (Utils.isEmpty(error)) {
+					toastr.error('Error when get task options, try again');
+				} else {
+					toastr.error(error);
+				}
 			});
 	}
 

@@ -34,6 +34,15 @@ export class JobService {
 			.catch(this.handleError);
 	}
 
+	stop(projectId: string, taskId: string): Promise<WebResponse> {
+		return this.http.get('/api/job/stop?project=' + projectId + '&task=' + taskId)
+			.toPromise()
+			.then((response: Response) => {
+				return response.json() as WebResponse;
+			})
+			.catch(this.handleError);
+	}
+
 	private handleError(error: any) {
 		return Promise.reject(error.message || error);
 	}
