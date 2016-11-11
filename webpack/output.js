@@ -4,5 +4,6 @@ let path = require('path');
 
 module.exports = {
 	path: path.join(process.cwd(), 'dist'),
-	filename: '[name].bundle.js'
+	filename: '[name].bundle.js',
+	publicPath: "/web-app/"
 };
