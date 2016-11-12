@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Rx";
 import { GlobalService } from "../../services/GlobalService";
 import { Project } from "../../models/Project";
 import { WebResponse } from "../../models/WebResponse";
+import { ProgressService } from "../../services/ProgressService";
 
 @Component({
 	selector: 'project-list',
@@ -18,9 +19,8 @@ export class ProjectListComponent implements OnInit {
 	showList: boolean;
 	showEmptyList: boolean;
 	showError: boolean;
-	showLoading: boolean;
 
-	constructor(private globalService: GlobalService, private projectService: ProjectService, private router: Router) {
+	constructor(private globalService: GlobalService, private projectService: ProjectService, private progressService: ProgressService, private router: Router) {
 
 	}
 
@@ -30,10 +30,7 @@ export class ProjectListComponent implements OnInit {
 
 	load() {
 		this.hideAll();
-
-		if (this.globalService.loadingDelayTime > 0) {
-			this.showLoading = true;
-		}
+		this.progressService.setProgress(0.5);
 
 		Observable.empty().delay(this.globalService.loadingDelayTime).subscribe(null, null, () => {
 			this.getData();
@@ -58,9 +55,12 @@ export class ProjectListComponent implements OnInit {
 				} else {
 					this.onError();
 				}
+
+				this.progressService.done();
 			})
 			.catch(() => {
 				this.onError();
+				this.progressService.done();
 			});
 	}
 
@@ -71,7 +71,6 @@ export class ProjectListComponent implements OnInit {
 	hideAll() {
 		this.showList = false;
 		this.showEmptyList = false;
-		this.showLoading = false;
 		this.showError = false;
 	}
 

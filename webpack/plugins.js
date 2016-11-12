@@ -28,6 +28,7 @@ module.exports = [
 		jQuery: 'jquery',
 		$: 'jquery',
 		jquery: 'jquery',
-		toastr: 'toastr'
+		toastr: 'toastr',
+		NProgress: 'nprogress'
 	})
 ];

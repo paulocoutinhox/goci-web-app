@@ -49,12 +49,6 @@
 		</div>
 	</div>
 
-	<div id="loading-data" *ngIf="showLoading">
-		<div class="panel panel-default">
-			<div class="panel-body">Loading...</div>
-		</div>
-	</div>
-
 	<task-options *ngIf="showTaskOptionsForm" [projectId]="runProjectId" [projectName]="runProjectName"
 				  [taskId]="runTaskId" [taskName]="runTaskName" [taskDescription]="runTaskDescription"
 				  [options]="runTaskOptions" (taskRunWithSuccess)="taskRunWithSuccess($event)"

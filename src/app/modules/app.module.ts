@@ -21,6 +21,7 @@ import { TaskOptionsComponent } from "../components/task-options/task-options.co
 import { ProjectTaskItemComponent } from "../components/project-task-item/project-task-item.component";
 import { ChartsModule } from "ng2-charts/ng2-charts";
 import { AppRoutingModule } from "./app-routing.module";
+import { ProgressService } from "../services/ProgressService";
 
 toastr.options = {timeOut: 5000, progressBar: true, hideDuration: 300, positionClass: 'toast-top-center'};
 
@@ -55,7 +56,8 @@ toastr.options = {timeOut: 5000, progressBar: true, hideDuration: 300, positionC
 		GlobalService,
 		JobService,
 		TaskService,
-		ProjectService
+		ProjectService,
+		ProgressService
 	]
 })
 

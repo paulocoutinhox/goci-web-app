@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { Utils } from "../../models/Utils";
 import { ProjectTaskOption } from "../../models/ProjectTaskOption";
 import { WebResponse } from "../../models/WebResponse";
+import { ProgressService } from "../../services/ProgressService";
 
 @Component({
 	selector: 'task-options',
@@ -49,7 +50,7 @@ export class TaskOptionsComponent implements OnInit, AfterViewInit {
 	@ViewChild('btRun')
 	btRun: any;
 
-	constructor(private taskService: TaskService) {
+	constructor(private taskService: TaskService, private progressService: ProgressService) {
 
 	}
 
@@ -85,6 +86,8 @@ export class TaskOptionsComponent implements OnInit, AfterViewInit {
 	}
 
 	run() {
+		this.progressService.setProgress(0.5);
+
 		let formValues = this.form.value;
 		let formData = Utils.formValuesEncoded(formValues);
 		formData += `&project=${this.projectId}&task=${this.taskId}`;
@@ -98,6 +101,8 @@ export class TaskOptionsComponent implements OnInit, AfterViewInit {
 					toastr.error(Utils.getFirstErrorMessage(wr));
 					this.taskRunWithError.emit();
 				}
+
+				this.progressService.done();
 			})
 			.catch(error => {
 				if (Utils.isEmpty(error)) {
@@ -107,6 +112,7 @@ export class TaskOptionsComponent implements OnInit, AfterViewInit {
 				}
 
 				this.taskRunWithError.emit();
+				this.progressService.done();
 			});
 	}
 

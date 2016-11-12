@@ -9,6 +9,7 @@ import { Job } from "../../models/Job";
 import { ProjectTask } from "../../models/ProjectTask";
 import { WebResponse } from "../../models/WebResponse";
 import { Utils } from "../../models/Utils";
+import { ProgressService } from "../../services/ProgressService";
 
 @Component({
 	selector: 'project-view',
@@ -23,7 +24,6 @@ export class ProjectViewComponent implements OnInit {
 	showData: boolean;
 	showEmptyData: boolean;
 	showError: boolean;
-	showLoading: boolean;
 
 	jobList: Job[];
 
@@ -35,7 +35,7 @@ export class ProjectViewComponent implements OnInit {
 	runTaskDescription: string;
 	showTaskOptionsForm: boolean;
 
-	constructor(private globalService: GlobalService, private projectService: ProjectService, private taskService: TaskService, private router: Router, private route: ActivatedRoute) {
+	constructor(private globalService: GlobalService, private projectService: ProjectService, private taskService: TaskService, private progressService: ProgressService, private router: Router, private route: ActivatedRoute) {
 
 	}
 
@@ -53,10 +53,7 @@ export class ProjectViewComponent implements OnInit {
 
 	load() {
 		this.hideAll();
-
-		if (this.globalService.loadingDelayTime > 0) {
-			this.showLoading = true;
-		}
+		this.progressService.setProgress(0.5);
 
 		Observable.empty().delay(this.globalService.loadingDelayTime).subscribe(null, null, () => {
 			this.getData();
@@ -81,9 +78,12 @@ export class ProjectViewComponent implements OnInit {
 				} else {
 					this.onError();
 				}
+
+				this.progressService.done();
 			})
 			.catch(() => {
 				this.onError();
+				this.progressService.done();
 			});
 	}
 
@@ -94,7 +94,6 @@ export class ProjectViewComponent implements OnInit {
 	hideAll() {
 		this.showData = false;
 		this.showEmptyData = false;
-		this.showLoading = false;
 		this.showError = false;
 		this.showTaskOptionsForm = false;
 	}
@@ -114,6 +113,8 @@ export class ProjectViewComponent implements OnInit {
 		this.runTaskDescription = task.description;
 		this.runTaskOptions = null;
 
+		this.progressService.setProgress(0.5);
+
 		this.taskService.options(this.project.id, task.id)
 			.then((wr: WebResponse) => {
 				if (wr.success == true) {
@@ -122,6 +123,8 @@ export class ProjectViewComponent implements OnInit {
 				} else {
 					toastr.error('Error when get task options, try again');
 				}
+
+				this.progressService.done();
 			})
 			.catch(error => {
 				if (Utils.isEmpty(error)) {
@@ -129,6 +132,8 @@ export class ProjectViewComponent implements OnInit {
 				} else {
 					toastr.error(error);
 				}
+
+				this.progressService.done();
 			});
 	}
 

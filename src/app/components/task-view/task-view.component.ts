@@ -11,6 +11,7 @@ import { Project } from "../../models/Project";
 import { ProjectTask } from "../../models/ProjectTask";
 import { JobOutputGroup } from "../../models/JobOutputGroup";
 import { WebResponse } from "../../models/WebResponse";
+import { ProgressService } from "../../services/ProgressService";
 
 @Component({
 	selector: 'task-view',
@@ -28,7 +29,6 @@ export class TaskViewComponent implements OnInit {
 	showData: boolean;
 	showEmptyData: boolean;
 	showError: boolean;
-	showLoading: boolean;
 
 	showLastJobData: boolean;
 	showLastJobEmptyData: boolean;
@@ -47,7 +47,7 @@ export class TaskViewComponent implements OnInit {
 	jobOutputGroupList: JobOutputGroup[];
 	lastJobId: string;
 
-	constructor(private globalService: GlobalService, private taskService: TaskService, private jobService: JobService, private router: Router, private route: ActivatedRoute) {
+	constructor(private globalService: GlobalService, private taskService: TaskService, private jobService: JobService, private progressService: ProgressService, private router: Router, private route: ActivatedRoute) {
 
 	}
 
@@ -65,10 +65,7 @@ export class TaskViewComponent implements OnInit {
 
 	load() {
 		this.hideAll();
-
-		if (this.globalService.loadingDelayTime > 0) {
-			this.showLoading = true;
-		}
+		this.progressService.setProgress(0.5);
 
 		Observable.empty().delay(this.globalService.loadingDelayTime).subscribe(null, null, () => {
 			this.getData();
@@ -92,9 +89,12 @@ export class TaskViewComponent implements OnInit {
 				} else {
 					this.onError();
 				}
+
+				this.progressService.done();
 			})
 			.catch(() => {
 				this.onError();
+				this.progressService.done();
 			});
 	}
 
@@ -106,7 +106,7 @@ export class TaskViewComponent implements OnInit {
 		this.jobService.stop(projectId, taskId)
 			.then((wr: WebResponse) => {
 				if (wr.success == true) {
-					toastr.success('Job stopped for this task');
+					toastr.success('Your job was stopped with success!');
 				} else {
 					toastr.error('Error when stop job for this task, try again');
 				}
@@ -123,7 +123,6 @@ export class TaskViewComponent implements OnInit {
 	hideAll() {
 		this.showData = false;
 		this.showEmptyData = false;
-		this.showLoading = false;
 		this.showError = false;
 		this.showTaskOptionsForm = false;
 	}

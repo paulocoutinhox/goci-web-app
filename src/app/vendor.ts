@@ -22,5 +22,9 @@ import 'toastr/build/toastr.css';
 // ChartJS
 import 'chart.js';
 
+// NProgress
+import 'nprogress';
+import 'nprogress/nprogress.css';
+
 // Project
 import '../static/styles/main.css';

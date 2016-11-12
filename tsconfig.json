@@ -18,7 +18,8 @@
 			"core-js",
 			"node",
 			"jquery",
-			"toastr"
+			"toastr",
+			"nprogress"
 		]
 	},
 	"exclude": [

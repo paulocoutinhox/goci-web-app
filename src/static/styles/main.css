@@ -190,3 +190,18 @@ h3 {
 	background-color: #5cb85c;
 	color: white;
 }
+
+#nprogress .bar {
+	background-color: #fff;
+}
+
+#nprogress .spinner-icon {
+	border-top-color: #205081;
+	border-left-color: #205081;
+}
+
+#nprogress .spinner {
+	top: auto !important;
+	bottom: 15px !important;
+	right: 15px !important;
+}
