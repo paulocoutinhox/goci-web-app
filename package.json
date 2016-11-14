@@ -1,7 +1,7 @@
 {
 	"name": "goci-web-app",
 	"version": "1.0.0",
-	"description": "GOCI Web App",
+	"description": "GoCI Web App",
 	"main": "index.js",
 	"scripts": {
 		"clean": "rm -rf aot && rm -rf dist && find ./ -type f -name '.DS_Store' -exec rm {} + && find ./src/app/ -type f -name '*.metadata.json' -exec rm {} + && find ./src/app/ -type f -name '*.ngfactory.ts' -exec rm {} + && find ./src/app/ -type f -name '*.css.shim.ts' -exec rm {} + && find ./src/app/ -type f -name '*.js' -exec rm {} + && find ./src/app/ -type f -name '*.js.map' -exec rm {} +",
