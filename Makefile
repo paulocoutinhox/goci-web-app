@@ -1,5 +1,5 @@
 # To generate, dont forget:
-#     1. Change "src/static/index.html" css and js paths to start with /web-app/
+#     1. Change "src/static/index.html" css, js and favicon paths to start with /web-app/
 #     2. Change "webpack/output.js" outputPath to "/web-app/"
 
 generate-bindata:
